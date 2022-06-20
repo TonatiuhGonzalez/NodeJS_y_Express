@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+    <title>Agregar Nota</title>
+</head>
+
+<body>
+  {{>header}}
+  <form class="box" action="/Note2Add" method="post">
+    <div class="field">
+      <label class="label">Título</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="Título de la nota" name="title2Save">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Nota</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="Cuerpo de la nota" name="body2Save">
+      </div>
+    </div>
+    <div class="field is-grouped is-grouped-centered">
+      <p class="control">
+        <input class="button is-primary" type="submit" value="Aceptar">
+      </p>
+      <p class="control">
+        <a class="button is-light" href="/">
+          Cancel
+        </a>
+      </p>
+    </div>
+    </form>
+  {{>footer}}
+</body>
+
+</html>

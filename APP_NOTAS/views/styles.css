@@ -1,0 +1,18 @@
+#prin_img{
+    width: 10px;
+    height: 10px;
+}
+
+h5{
+    color: red;
+}
+
+#izq{
+    float: left;
+    size: 45%;
+}
+
+#der{
+    float: right;
+    size: 45%;
+}
