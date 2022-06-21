@@ -12,6 +12,7 @@
   <div class="columns" style="padding: 20px; margin-left:90px">
     <table class="table">
       <tr>
+        <th>ID</th>
         <th>Título</th>
         <th>Cuerpo</th>
         <th></th>
@@ -19,13 +20,12 @@
       </tr>
         {{#each notes}}
         <tr>
+          <td>{{id}}</td>
           <td>{{title}}</td>
           <td>{{body}}</td>
-          <td><a href="/Editar" title="Editar">Editar</a></td>
+          <td><a href="/edit/{{id}}" title="Editar">Editar</a></td>
           <td>
-            <form action="delete" method="delete">
-              <p>Eliminar</p>
-            </form>
+            <a href="/delete_note/{{id}}" title="Elminar">Eliminar</a>
           </td>
         </tr>
         {{/each}}

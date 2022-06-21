@@ -14,14 +14,15 @@
   <form class="box" action="/modify" method="post">
     <div class="field">
       <label class="label">Título</label>
+      <input value ={{note.id}} name = "id" hidden="true"></input>
       <div class="control">
-        <input class="input" type="text">
+        <input class="input" type="text" value = {{note.title}} name="title">
       </div>
     </div>
     <div class="field">
       <label class="label">Nota</label>
       <div class="control">
-        <input class="input" type="text" placeholder="Nuevo texto de la nota" name="body2Save">
+        <input class="input" type="text" placeholder="Nuevo texto de la nota" name="body"}>
       </div>
     </div>
     <div class="field is-grouped is-grouped-centered">

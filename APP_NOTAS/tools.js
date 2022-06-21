@@ -6,20 +6,25 @@ const addNote = function(title, body){
     console.log("El título de la nota ", title)
     console.log("El cuerpo de la nota ", body)
     const notes = loadNotes()
-    const duplicateNote = notes.find((notes)=> notes.title === title)
+    const maxID = notes.length > 0 ? Math.max(...notes.map(n=>n.id)):0
+    console.log("ID: " + maxID)
+    const duplicateNote = notes.find((note)=> note.title === title)
     if(!duplicateNote){
+        id = maxID+1
         notes.push(
             {
-                title:title,
-                body:body
+                id: id,
+                title: title,
+                body: body
             }
         )
-        //guardar en el archivo
         saveNotes(notes)
-        const value = true
+        console.log("notas creadas")
+        return true
     }
     else{
-        const value = false
+        console.log("error al crear nota")
+        return false
     }
 }
 
@@ -47,15 +52,10 @@ const loadNotes = function(){
     }
 }
 
-const removeNote = function(title){
-    const notes=loadNotes()
-    const notesToKeep = notes.filter((notes) => notes.title != title)
-    if(notes.length>notesToKeep.length){
-        saveNotes(notesToKeep)
-    }
-    else{
-        console.log("Nota no encontrada")
-    }
+const removeNote = function(id){
+    const notes = loadNotes();
+    const notesToKeep = notes.filter((note) => note.id != id);
+      saveNotes(notesToKeep);
 }
 
 const readOneNote = function(title){
@@ -69,24 +69,14 @@ const readOneNote = function(title){
     }
 }
 
-const modifyNote = function(title,body){
-    const notes = loadNotes()
-    const noteToModify = notes.find((notes)=>notes.title===title)
-    if(notes){
-        const removeNote = notes.filter((notes)=>notes.title != title)
-        saveNotes(removeNote)
-        removeNote.push(
-            {
-                title:title,
-                body:body
-            }
-        )
-        saveNotes(removeNote)
-    }
-    else{
-        console.log('Nota no encontrada')
-    }
-}
+const updateNote = function (id, updateTitle, updateBody) {
+    const notes = loadNotes();
+    let ids= Number(id)
+    let note = notes.findIndex((note) =>note.id === ids);
+    newnote =
+    notes.splice(note, 1, {id:ids, title: updateTitle, body: updateBody});
+    saveNotes(notes);
+  };
 
 module.exports = {
     addNote:addNote, 
@@ -94,5 +84,5 @@ module.exports = {
     listNotes:listNotes,
     removeNote:removeNote,
     readOneNote:readOneNote,
-    modifyNote:modifyNote
+    updateNote:updateNote
 }

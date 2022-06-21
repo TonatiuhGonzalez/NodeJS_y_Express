@@ -95,24 +95,38 @@ app.get('/notes/:id', (request, response) => {
   
   app.get("/add_Note", (request, response) => {
     response.render("add_Note");
-  });
+  })
   
   
   app.post("/Note2Add", (request, response) => {
     console.log("funcion para crear nota post");
     tools.addNote(request.body.title2Save, request.body.body2Save);
     response.redirect('/list_notes');
-  });
-
-  app.get("/Editar:title",(request, response) =>{
-    let title = request.params.title;
-    const notes = tools.loadNotes();
-    const note = notes.find((note) => note.title === title);
-    response.render("edit", {note});
   })
 
-  app.get("/delete_note/:title", (request,response)=>{
-    
+  app.get("/edit/:id",(request, response) =>{
+    let id = Number(request.params.id);
+  
+    console.log(id);
+    const notes = tools.loadNotes();
+  
+    const note = notes.find((note) => note.id === id);
+    response.render("edit", { note });
+  })
+
+  app.post("/modify", (request, response) => {
+    let id = request.body.id;
+    let titulo = request.body.title;
+    let cuerpo = request.body.body;
+    tools.updateNote(id, titulo, cuerpo);
+    response.redirect("/list_notes");
+  });
+  
+
+  app.get("/delete_note/:id", (request,response)=>{
+    const id = request.params.id; 
+    tools.removeNote(id)
+    response.redirect("/list_notes"); 
   })
 
 const PORT = 3001
